@@ -32,9 +32,10 @@ app.get('/notes', (req, res) => {
   res.status(200).json({ message: 'Retrieved all notes' });
 });
 
-app.get('notes/:noteId', (req, res) => {
-  const { id_param } = req.params.noteId;
-  res.status(200).json({ message: `Retrieved note with ID: ${id_param}` });
+app.get('/notes/:noteId', (req, res) => {
+  res
+    .status(200)
+    .json({ message: `Retrieved note with ID: ${req.params.noteId}` });
 });
 
 app.use((req, res) => {
@@ -46,6 +47,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: isProd ? 'Server Error' : err.stack });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
