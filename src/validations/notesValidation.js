@@ -15,7 +15,7 @@ const objectIdValidator = (value, helpers) => {
   if (isValidObjectId(value)) {
     return value;
   }
-  return helpers.error('any.invalid');
+  return helpers.message('Bad ID, check the ID and try again');
 };
 
 export const noteIdSchema = {
@@ -39,6 +39,6 @@ export const updateNoteSchema = {
     tag: Joi.string().valid(...TAGS),
   }).min(1),
   [Segments.PARAMS]: Joi.object({
-    noteId: Joi.string().custom(objectIdValidator).required,
+    noteId: Joi.string().custom(objectIdValidator).required(),
   }),
 };
