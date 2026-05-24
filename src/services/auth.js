@@ -1,4 +1,4 @@
-import { Session } from '../models/session';
+import { Session } from '../models/session.js';
 import crypto from 'crypto';
 import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/time';
 export const createSession = async (id) => {
@@ -29,6 +29,6 @@ export const setSessionCookies = (res, session) => {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    maxAge: FIFTEEN_MINUTES,
+    maxAge: ONE_DAY,
   });
 };
